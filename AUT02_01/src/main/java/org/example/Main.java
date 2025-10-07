@@ -9,9 +9,11 @@ public class Main {
     private static final ArrayList<Student> students = new ArrayList<>();
 
     public static void main(String[] args) {
-
-        students.add(new Student("Rubén", 12, 6.5f, true));
-        students.add(new Student("Luis", 18, 4.8f, true));
+    //Estudiantes para testeo
+        students.add(new Student("Rubén", 16, 6.5f, true));
+        students.add(new Student("Maricarmen", 14, 8.1f, true));
+        students.add(new Student("Josué", 14, 9.2f, true));
+        students.add(new Student("Pedro Pablo", 18, 4.8f, true));
 
         System.out.println("=== SISTEMA DE GESTIÓN DE ESTUDIANTES ===");
 
@@ -139,7 +141,22 @@ public class Main {
     }
 
     private static void showTopStudent(){
+        System.out.println("\n--- MEJOR ESTUDIANTE ---");
 
+        if (students.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+
+        Student top = students.get(0);
+        for (Student s : students) {
+            if (s.getAvg() > top.getAvg()) {
+                top = s;
+            }
+        }
+
+        System.out.println("Estudiante con la mejor nota:");
+        System.out.println(top);
     }
 
 
@@ -178,7 +195,4 @@ public class Main {
             }
         }
     }
-
-
-
 }
