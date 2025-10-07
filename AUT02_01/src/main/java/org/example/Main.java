@@ -122,7 +122,20 @@ public class Main {
     }
 
     private static void showAverageGrade(){
+        System.out.println("\n--- NOTA MEDIA GENERAL ---");
 
+        if (students.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+
+        double total = 0;
+        for (Student s : students) {
+            total += s.getAvg();
+        }
+
+        double avg = total / students.size();
+        System.out.printf("La nota media general es: %.2f\n", avg);
     }
 
     private static void showTopStudent(){
