@@ -23,15 +23,21 @@ public class Main {
 
             switch (choice) {
                 case 1: addStudent();
-                case 2: listStudents();
-                case 3: searchByName();
-                case 4: showAverageGrade();
-                case 5: showTopStudent();
+                break;
+                case 2: listStudents(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                break;
+                case 3: searchByName(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                break;
+                case 4: showAverageGrade(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                break;
+                case 5: showTopStudent(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                break;
                 case 6: {
                     System.out.println("Saliendo del programa.");
                     running = false;
                     sc.close();
                 }
+                break;
                 default: System.out.println("Opción no válida. Inténtalo nuevamente.");
             }
         }
@@ -97,7 +103,22 @@ public class Main {
     }
 
     private static void searchByName(){
+        System.out.println("\n--- BÚSQUEDA DE ESTUDIANTE POR NOMBRE ---");
+        System.out.print("Ingrese el nombre a buscar: ");
+        String query = sc.nextLine().trim().toLowerCase();
 
+        boolean found = false;
+
+        for (Student s : students) {
+            if (s.getName().toLowerCase().contains(query)) {
+                System.out.println("\n" + s);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No se encontraron coincidencias.");
+        }
     }
 
     private static void showAverageGrade(){
