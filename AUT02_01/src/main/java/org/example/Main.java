@@ -1,17 +1,59 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.text.DecimalFormat;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+
+    public static Scanner sc = new Scanner(System.in);
+    private static ArrayList<Student> studentList = new ArrayList<>();
+
+    static class Student {
+        private String name;
+        private int age;
+        private float avg;
+        private boolean isEnrolled;
+
+        public Student(String name, int age, float avg, boolean isEnrolled) {
+            this.name = name;
+            this.age = age;
+            this.avg = avg;
+            this.isEnrolled = isEnrolled;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public double getAvg() {
+            return avg;
+        }
+
+        public boolean getEnrolled() {
+            return isEnrolled;
+        }
+
+        @Override
+        public String toString() {
+            String enrolled = isEnrolled ? "Si" : "No";
+            StringBuilder sb = new StringBuilder();
+
+            sb.append(name)
+                    .append("\nEdad: ").append(age)
+                    .append("\nNota: ").append(avg)
+                    .append("\nEstá matriculado: ").append(enrolled);
+
+            return sb.toString();
+        }
+
+        public static void Main(String[] args)
+        {
+
         }
     }
 }
