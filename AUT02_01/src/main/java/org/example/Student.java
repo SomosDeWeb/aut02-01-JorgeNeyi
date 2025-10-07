@@ -7,6 +7,13 @@ public class Student {
         private float avg;
         private boolean isEnrolled;
 
+        public Student()
+        {
+            name = "";
+            age = 0;
+            avg = 0;
+            isEnrolled = false;
+        }
 
         public Student(String name, int age, float avg, boolean isEnrolled) {
             this.name = name;

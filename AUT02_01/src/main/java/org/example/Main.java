@@ -26,19 +26,27 @@ public class Main {
             switch (choice) {
                 case 1: addStudent();
                 break;
-                case 2: listStudents(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                case 2: listStudents();
+                System.out.println("\nPulsa Intro para continuar");
+                sc.nextLine();
                 break;
-                case 3: searchByName(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                case 3: searchByName();
+                System.out.println("\nPulsa Intro para continuar");
+                sc.nextLine();
                 break;
-                case 4: showAverageGrade(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                case 4: showAverageGrade();
+                System.out.println("\nPulsa Intro para continuar");
+                sc.nextLine();
                 break;
-                case 5: showTopStudent(); System.out.println("\nPulsa Intro para continuar"); sc.nextLine();
+                case 5: showTopStudent();
+                System.out.println("\nPulsa Intro para continuar");
+                sc.nextLine();
                 break;
-                case 6: {
-                    System.out.println("Saliendo del programa.");
-                    running = false;
-                    sc.close();
-                }
+                case 6:
+                System.out.println("Saliendo del programa.");
+                running = false;
+                sc.close();
+
                 break;
                 default: System.out.println("Opción no válida. Inténtalo nuevamente.");
             }
@@ -56,9 +64,14 @@ public class Main {
     }
 
     private static void addStudent() {
-        System.out.println("\n--- AÑADIR ESTUDIANTE ---");
+
 
         String name;
+        int age;
+        float avg;
+
+        System.out.println("\n--- AÑADIR ESTUDIANTE ---");
+
         do {
             System.out.print("Nombre: ");
             name = sc.nextLine().trim();
@@ -67,7 +80,6 @@ public class Main {
             }
         } while (name.isEmpty());
 
-        int age;
         do {
             age = readInt("Edad: ");
             if (age < 0 || age > 18) {
@@ -75,7 +87,6 @@ public class Main {
             }
         } while (age < 0 || age > 18);
 
-        float avg;
         do {
             avg = readFloat("Nota media (1 a 10): ");
             if (avg < 1 || avg > 10) {
@@ -148,7 +159,7 @@ public class Main {
             return;
         }
 
-        Student top = students.get(0);
+        Student top = new Student();
         for (Student s : students) {
             if (s.getAvg() > top.getAvg()) {
                 top = s;
@@ -164,7 +175,7 @@ public class Main {
 
     private static boolean askEnrollmentStatus(){
         while (true) {
-            System.out.print("¿Está matriculado? (s/n): ");
+            System.out.print("¿Está matriculado? (si/no): ");
             String input = sc.nextLine().trim().toLowerCase();
 
             if (input.equals("si")) return true;
