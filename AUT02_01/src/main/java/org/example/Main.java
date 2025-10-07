@@ -2,58 +2,140 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.text.DecimalFormat;
 
 public class Main {
 
-    public static Scanner sc = new Scanner(System.in);
-    private static ArrayList<Student> studentList = new ArrayList<>();
+    private static final Scanner sc = new Scanner(System.in);
+    private static final ArrayList<Student> students = new ArrayList<>();
 
-    static class Student {
-        private String name;
-        private int age;
-        private float avg;
-        private boolean isEnrolled;
+    public static void main(String[] args) {
 
-        public Student(String name, int age, float avg, boolean isEnrolled) {
-            this.name = name;
-            this.age = age;
-            this.avg = avg;
-            this.isEnrolled = isEnrolled;
-        }
+        students.add(new Student("Rubén", 12, 6.5f, true));
+        students.add(new Student("Luis", 18, 4.8f, true));
 
-        public String getName() {
-            return name;
-        }
+        System.out.println("=== SISTEMA DE GESTIÓN DE ESTUDIANTES ===");
 
-        public int getAge() {
-            return age;
-        }
+        boolean running = true;
 
-        public double getAvg() {
-            return avg;
-        }
+        while (running) {
+            showMenu();
+            int choice = readInt("Seleccione una opción: ");
 
-        public boolean getEnrolled() {
-            return isEnrolled;
-        }
-
-        @Override
-        public String toString() {
-            String enrolled = isEnrolled ? "Si" : "No";
-            StringBuilder sb = new StringBuilder();
-
-            sb.append(name)
-                    .append("\nEdad: ").append(age)
-                    .append("\nNota: ").append(avg)
-                    .append("\nEstá matriculado: ").append(enrolled);
-
-            return sb.toString();
-        }
-
-        public static void Main(String[] args)
-        {
-
+            switch (choice) {
+                case 1 -> addStudent();
+                case 2 -> listStudents();
+                case 3 -> searchByName();
+                case 4 -> showAverageGrade();
+                case 5 -> showTopStudent();
+                case 6 -> {
+                    System.out.println("Saliendo del programa. ¡Hasta pronto!");
+                    running = false;
+                    sc.close();
+                }
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
         }
     }
+
+    private static void showMenu() {
+        System.out.println("\n--- MENÚ PRINCIPAL ---");
+        System.out.println("1. Registrar nuevo estudiante");
+        System.out.println("2. Listar todos los estudiantes");
+        System.out.println("3. Buscar estudiante por nombre");
+        System.out.println("4. Calcular nota media general");
+        System.out.println("5. Mostrar mejor estudiante");
+        System.out.println("6. Salir");
+    }
+
+    private static void addStudent() {
+        System.out.println("\n--- AÑADIR ESTUDIANTE ---");
+
+        String name;
+        do {
+            System.out.print("Nombre: ");
+            name = sc.nextLine().trim();
+            if (name.isEmpty()) {
+                System.out.println("El nombre no puede estar vacío.");
+            }
+        } while (name.isEmpty());
+
+        int age;
+        do {
+            age = readInt("Edad: ");
+            if (age < 0 || age > 18) {
+                System.out.println("Edad no válida. Debe estar entre 0 y 18.");
+            }
+        } while (age < 0 || age > 18);
+
+        float avg;
+        do {
+            avg = readFloat("Nota media (1 a 10): ");
+            if (avg < 1 || avg > 10) {
+                System.out.println("Nota no válida. Debe estar entre 1 y 10.");
+            }
+        } while (avg < 1 || avg > 10);
+
+        boolean enrolled = askEnrollmentStatus();
+
+        students.add(new Student(name, age, avg, enrolled));
+        System.out.println("Estudiante añadido correctamente.");
+    }
+
+
+
+    private static void listStudents(){
+
+    }
+
+    private static void searchByName(){
+
+    }
+
+    private static void showAverageGrade(){
+
+    }
+
+    private static void showTopStudent(){
+
+    }
+
+
+
+
+    private static boolean askEnrollmentStatus(){
+        while (true) {
+            System.out.print("¿Está matriculado? (s/n): ");
+            String input = sc.nextLine().trim().toLowerCase();
+
+            if (input.equals("si")) return true;
+            if (input.equals("no")) return false;
+
+            System.out.println("Entrada no válida. Escribe 'si' o 'no'.");
+        }
+    }
+
+    private static int readInt(String message){
+        while (true) {
+            System.out.print(message);
+            try {
+                return Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingresa un número entero válido.");
+            }
+        }
+    }
+
+    private static float readFloat(String message){
+        while (true) {
+            System.out.print(message);
+            try {
+                return Float.parseFloat(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingresa un número decimal válido.");
+            }
+        }
+    }
+
+
+
 }
