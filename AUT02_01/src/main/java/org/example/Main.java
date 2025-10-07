@@ -22,17 +22,17 @@ public class Main {
             int choice = readInt("Seleccione una opción: ");
 
             switch (choice) {
-                case 1 -> addStudent();
-                case 2 -> listStudents();
-                case 3 -> searchByName();
-                case 4 -> showAverageGrade();
-                case 5 -> showTopStudent();
-                case 6 -> {
-                    System.out.println("Saliendo del programa. ¡Hasta pronto!");
+                case 1: addStudent();
+                case 2: listStudents();
+                case 3: searchByName();
+                case 4: showAverageGrade();
+                case 5: showTopStudent();
+                case 6: {
+                    System.out.println("Saliendo del programa.");
                     running = false;
                     sc.close();
                 }
-                default -> System.out.println("Opción no válida. Intente nuevamente.");
+                default: System.out.println("Opción no válida. Inténtalo nuevamente.");
             }
         }
     }
@@ -84,7 +84,16 @@ public class Main {
 
 
     private static void listStudents(){
+        System.out.println("\n--- LISTAR ESTUDIANTES ---");
 
+        if (students.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+
+        for (Student s : students) {
+            System.out.println("\n" + s);
+        }
     }
 
     private static void searchByName(){
